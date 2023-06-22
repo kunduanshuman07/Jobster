@@ -16,7 +16,7 @@ const Landing = () => {
           <p>some text</p>
           <button className="btn btn-hero">Login/Register</button>
         </div>
-        <img src={main} alt="job hunt" className="img main-img"/>
+        <img src={main} alt="job hunt" className="img main-img" />
       </div>
     </main>
   );
