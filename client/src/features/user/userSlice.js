@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/axios";
+import { clearStoreThunk } from './userThunk';
 import {
   getUserFromLocalStorage,
   addUserToLocalStorage,
@@ -16,7 +17,7 @@ const initialState = {
   isSidebarOpen: false,
   user: getUserFromLocalStorage(),
 };
-
+export const clearStore = createAsyncThunk('user/clearStore', clearStoreThunk);
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (user, thunkAPI) => {
@@ -95,6 +96,9 @@ const userSlice = createSlice({
     [updateUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
+    },
+    [clearStore.rejected]: () => {
+      toast.error('There was an error');
     },
   },
 });
